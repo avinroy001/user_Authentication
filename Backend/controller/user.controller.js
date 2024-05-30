@@ -6,4 +6,17 @@ const creatUser=async(req,res)=>{
     res.send(d)
 
 }
-module.exports=creatUser
+
+const findUser=async(req,res)=>{
+    const{username,password}=req.body
+    let d=await user.findOne({username:username,password:password})
+    console.log(req.body)
+    if(d){
+        res.send(d)
+    }else{
+        return res.status(401).send("unauthorised")
+    }
+   
+
+}
+module.exports={creatUser,findUser}
