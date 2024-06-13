@@ -2,8 +2,13 @@ const mongoose=require("mongoose");
 const bcrypt=require("bcryptjs");
 const userSchema=new mongoose.Schema({
     username:String,
-    password:String
-})
+    password:String,
+    token:String
+},
+{
+    timestamps:true
+}
+)
 userSchema.pre("save", async function(next){
     console.log("pre",this)
     if(!this.isModified("password")){
